@@ -1,7 +1,12 @@
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Book, Code, Settings, Zap, FileText, Upload, Download, AlertCircle, RotateCcw, Clock, Filter, Globe, Wrench, Lightbulb, HelpCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { 
+  Book, Code, Settings, Zap, FileText, Upload, Download, 
+  AlertCircle, RotateCcw, Clock, Filter, Globe, Wrench, 
+  Lightbulb, HelpCircle, Play 
+} from "lucide-react";
 
 interface DocsSidebarProps {
   activeSection: string;
@@ -15,7 +20,7 @@ const DocsSidebar = ({ activeSection, onSectionChange }: DocsSidebarProps) => {
       items: [
         { id: "introduction", title: "Introduction", icon: Book },
         { id: "installation", title: "Installation", icon: Download },
-        { id: "quick-start", title: "Quick Start", icon: Zap },
+        { id: "quick-start", title: "Quick Start", icon: Play },
         { id: "core-concepts", title: "Core Concepts", icon: Lightbulb },
       ]
     },
@@ -53,33 +58,35 @@ const DocsSidebar = ({ activeSection, onSectionChange }: DocsSidebarProps) => {
   ];
 
   return (
-    <div className="w-64 border-r bg-background/95 backdrop-blur">
-      <div className="p-6">
-        <h2 className="text-lg font-semibold mb-4">Documentation</h2>
+    <div className="w-64 border-r bg-background">
+      <div className="p-6 border-b">
+        <h2 className="text-lg font-semibold tracking-tight">Documentation</h2>
       </div>
       
       <ScrollArea className="h-[calc(100vh-8rem)] px-4">
-        <div className="space-y-6 pb-6">
+        <div className="space-y-8 py-6">
           {sections.map((section) => (
             <div key={section.title}>
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3 px-2">
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 px-2">
                 {section.title}
               </h3>
               <div className="space-y-1">
                 {section.items.map((item) => (
-                  <button
+                  <motion.button
                     key={item.id}
+                    whileHover={{ x: 2 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => onSectionChange(item.id)}
                     className={cn(
-                      "w-full flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors text-left",
+                      "w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all text-left",
                       activeSection === item.id
-                        ? "bg-primary/10 text-primary font-medium"
+                        ? "bg-muted text-foreground font-medium"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     )}
                   >
                     <item.icon className="h-4 w-4" />
                     {item.title}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
