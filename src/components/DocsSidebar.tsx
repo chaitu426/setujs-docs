@@ -58,7 +58,7 @@ const DocsSidebar = ({ activeSection, onSectionChange }: DocsSidebarProps) => {
   ];
 
   return (
-    <div className="w-64 border-r bg-background sticky top-0 h-screen">
+    <div className="w-64 border-r bg-background">
       <div className="p-6 border-b">
         <h2 className="text-lg font-semibold tracking-tight">Documentation</h2>
       </div>
