@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -14,7 +15,7 @@ const DocsContent = ({ activeSection }: DocsContentProps) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
@@ -415,6 +416,249 @@ await setu.get('/api/posts', { headers: commonHeaders });`}</code>
           </motion.div>
         );
 
+      case "response-handling":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Response Handling</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Work with response data, status codes, and headers effectively.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Response Object</h2>
+                <p className="text-muted-foreground mb-4">Every successful request returns a response object:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`interface Response<T = any> {
+  data: T;           // Response data
+  status: number;    // HTTP status code
+  statusText: string; // HTTP status message
+  headers: Headers;  // Response headers
+  config: RequestConfig; // Request configuration used
+}`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Working with Responses</h2>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`const response = await setu.get('/api/users');
+
+// Access response data
+console.log(response.data);
+
+// Check status
+if (response.status === 200) {
+  console.log('Success!');
+}
+
+// Access headers
+console.log(response.headers.get('content-type'));`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "http-methods":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">HTTP Methods</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Complete guide to using all HTTP methods with Setu.js.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">GET Requests</h2>
+                <p className="text-muted-foreground mb-4">Perfect for retrieving data:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`// Basic GET
+const users = await setu.get('/api/users');
+
+// GET with query parameters
+const filteredUsers = await setu.get('/api/users?role=admin&active=true');
+
+// GET with headers
+const protectedData = await setu.get('/api/protected', {
+  headers: { 'Authorization': 'Bearer token' }
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">POST Requests</h2>
+                <p className="text-muted-foreground mb-4">For creating new resources:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`// Create a new user
+const newUser = await setu.post('/api/users', {
+  body: {
+    name: 'Alice Johnson',
+    email: 'alice@example.com',
+    role: 'user'
+  }
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "file-operations":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">File Operations</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Upload and download files with progress tracking.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">File Upload</h2>
+                <p className="text-muted-foreground mb-4">Upload files with progress tracking:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`const fileInput = document.getElementById('file');
+const file = fileInput.files[0];
+
+const formData = new FormData();
+formData.append('file', file);
+
+const uploadResponse = await setu.post('/api/upload', {
+  body: formData,
+  onUploadProgress: (progress) => {
+    const percentage = Math.round((progress.loaded / progress.total) * 100);
+    console.log(\`Upload progress: \${percentage}%\`);
+  }
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "progress-tracking":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Progress Tracking</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Monitor upload and download progress for better user experience.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Upload Progress</h2>
+                <p className="text-muted-foreground mb-4">Track the progress of file uploads:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`await setu.post('/api/upload', {
+  body: formData,
+  onUploadProgress: (progressEvent) => {
+    const { loaded, total, lengthComputable } = progressEvent;
+    
+    if (lengthComputable) {
+      const percentComplete = Math.round((loaded / total) * 100);
+      console.log(\`Upload: \${loaded}/\${total} bytes (\${percentComplete}%)\`);
+    }
+  }
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Download Progress</h2>
+                <p className="text-muted-foreground mb-4">Track the progress of downloads:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`await setu.get('/api/large-file.zip', {
+  responseType: 'blob',
+  onDownloadProgress: (progressEvent) => {
+    const { loaded, total, lengthComputable } = progressEvent;
+    
+    if (lengthComputable) {
+      const percentComplete = Math.round((loaded / total) * 100);
+      console.log(\`Download: \${loaded}/\${total} bytes (\${percentComplete}%)\`);
+    }
+  }
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "streaming":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Streaming</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Stream large files and data efficiently in Node.js environments.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Node.js Streaming Support</h2>
+                <p className="text-muted-foreground mb-4">Full streaming support in Node.js:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`import fs from 'fs';
+import { pipeline } from 'stream/promises';
+import setu from 'setu.js';
+
+// Download large file as stream
+const response = await setu.get('https://example.com/large-file.zip', {
+  responseType: 'stream'
+});
+
+// Pipe to file
+await pipeline(
+  response.data,
+  fs.createWriteStream('./downloads/large-file.zip')
+);`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
       case "error-handling":
         return (
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
@@ -444,9 +688,6 @@ await setu.get('/api/posts', { headers: commonHeaders });`}</code>
   } else if (error.request) {
     // Request was made but no response received
     console.error('No response received');
-  } else {
-    // Other error
-    console.error('Error:', error.message);
   }
 }`}</code>
                     </pre>
@@ -489,73 +730,304 @@ const response = await setu.get('/api/unreliable-endpoint', {
                   </CardContent>
                 </Card>
               </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Exponential Backoff</h2>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`async function makeRequestWithBackoff(url, config = {}) {
+  const maxRetries = config.retries || 3;
+  const baseDelay = config.retryDelay || 1000;
+  
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await setu.get(url, { ...config, retries: 0 });
+    } catch (error) {
+      if (attempt === maxRetries) throw error;
+      
+      const delay = baseDelay * Math.pow(2, attempt);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </motion.div>
         );
 
-      case "progress-tracking":
+      case "timeouts":
         return (
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
             <div>
-              <h1 className="text-4xl font-bold mb-6 tracking-tight">Progress Tracking</h1>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Timeouts</h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Monitor upload and download progress for better user experience.
+                Configure request timeouts to prevent hanging requests.
               </p>
             </div>
 
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Upload Progress</h2>
-                <p className="text-muted-foreground mb-4">Track the progress of file uploads:</p>
+                <h2 className="text-2xl font-semibold mb-4">Basic Timeout Configuration</h2>
                 <Card>
                   <CardContent className="p-6">
                     <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
-                      <code>{`await setu.post('/api/upload', {
-  body: formData,
-  onUploadProgress: (progressEvent) => {
-    const { loaded, total, lengthComputable } = progressEvent;
-    
-    if (lengthComputable) {
-      const percentComplete = Math.round((loaded / total) * 100);
-      console.log(\`Upload: \${loaded}/\${total} bytes (\${percentComplete}%)\`);
-      
-      // Update UI
-      updateProgressBar('upload-progress', percentComplete);
-    } else {
-      console.log(\`Upload: \${loaded} bytes uploaded\`);
-    }
+                      <code>{`// Set timeout for a single request
+const response = await setu.get('/api/data', {
+  timeout: 5000 // 5 seconds
+});
+
+// Different timeouts for different operations
+const fastResponse = await setu.get('/api/ping', {
+  timeout: 1000 // 1 second for health checks
+});
+
+const slowResponse = await setu.get('/api/heavy-computation', {
+  timeout: 30000 // 30 seconds for heavy operations
+});`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "interceptors":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Interceptors</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Intercept requests and responses to add global functionality.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Request Interceptors</h2>
+                <p className="text-muted-foreground mb-4">Modify requests before they are sent:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`// Add authentication header to all requests
+function addAuthHeader(config) {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers = {
+      ...config.headers,
+      'Authorization': \`Bearer \${token}\`
+    };
+  }
+  return config;
+}
+
+// Use interceptor
+const response = await setu.get('/api/protected', addAuthHeader({}));`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "typescript-support":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">TypeScript Support</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Full TypeScript support with type safety and excellent IntelliSense.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Type-Safe Requests</h2>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+// Type-safe GET request
+const response = await setu.get<User[]>('/api/users');
+const users: User[] = response.data; // Fully typed
+
+// Type-safe POST request
+const newUser = await setu.post<User>('/api/users', {
+  body: {
+    name: 'John Doe',
+    email: 'john@example.com'
   }
 });`}</code>
                     </pre>
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </motion.div>
+        );
 
+      case "browser-vs-nodejs":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Browser vs Node.js</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Understanding the differences and capabilities in different environments.
+              </p>
+            </div>
+
+            <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Download Progress</h2>
-                <p className="text-muted-foreground mb-4">Track the progress of downloads:</p>
+                <h2 className="text-2xl font-semibold mb-4">Environment Detection</h2>
+                <p className="text-muted-foreground mb-4">Setu.js automatically detects the environment and uses the appropriate HTTP implementation.</p>
                 <Card>
                   <CardContent className="p-6">
                     <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
-                      <code>{`await setu.get('/api/large-file.zip', {
-  responseType: 'blob',
-  onDownloadProgress: (progressEvent) => {
-    const { loaded, total, lengthComputable } = progressEvent;
-    
-    if (lengthComputable) {
-      const percentComplete = Math.round((loaded / total) * 100);
-      console.log(\`Download: \${loaded}/\${total} bytes (\${percentComplete}%)\`);
-      
-      // Update UI
-      updateProgressBar('download-progress', percentComplete);
-    } else {
-      console.log(\`Download: \${loaded} bytes received\`);
-    }
-  }
-});`}</code>
+                      <code>{`// Same code works in both environments
+import setu from 'setu.js';
+
+// Browser: Uses fetch API
+// Node.js: Uses http/https modules
+const response = await setu.get('/api/data');`}</code>
                     </pre>
                   </CardContent>
                 </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "advanced-usage":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Advanced Usage</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Advanced patterns and techniques for power users.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Custom Client Creation</h2>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`class ApiClient {
+  constructor(baseURL, defaultConfig = {}) {
+    this.baseURL = baseURL;
+    this.defaultConfig = defaultConfig;
+  }
+  
+  async request(method, url, config = {}) {
+    const fullUrl = url.startsWith('http') ? url : \`\${this.baseURL}\${url}\`;
+    const mergedConfig = { ...this.defaultConfig, ...config };
+    return await setu[method](fullUrl, mergedConfig);
+  }
+  
+  get(url, config) { return this.request('get', url, config); }
+  post(url, config) { return this.request('post', url, config); }
+}`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "best-practices":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Best Practices</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Recommended patterns and practices for using Setu.js effectively.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Error Handling</h2>
+                <p className="text-muted-foreground mb-4">Always handle errors appropriately:</p>
+                <Card>
+                  <CardContent className="p-6">
+                    <pre className="bg-muted/30 p-6 rounded-lg overflow-x-auto text-sm border">
+                      <code>{`// Good: Proper error handling
+try {
+  const response = await setu.get('/api/data');
+  return response.data;
+} catch (error) {
+  console.error('API Error:', error.message);
+  throw error;
+}
+
+// Bad: No error handling
+const response = await setu.get('/api/data');
+return response.data; // Could throw unhandled errors`}</code>
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </motion.div>
+        );
+
+      case "troubleshooting":
+        return (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+            <div>
+              <h1 className="text-4xl font-bold mb-6 tracking-tight">Troubleshooting</h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Common issues and their solutions.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Common Issues</h2>
+                
+                <div className="space-y-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Network Errors</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4">
+                        If you're experiencing network errors, check your internet connection and ensure the API endpoint is accessible.
+                      </p>
+                      <pre className="bg-muted/30 p-4 rounded-lg text-sm border">
+                        <code>{`// Check if the endpoint is reachable
+try {
+  await setu.get('/api/health');
+} catch (error) {
+  console.error('Endpoint not reachable:', error.message);
+}`}</code>
+                      </pre>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>CORS Issues</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4">
+                        CORS errors occur when making cross-origin requests. Ensure your server has proper CORS headers configured.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -578,7 +1050,7 @@ const response = await setu.get('/api/unreliable-endpoint', {
   };
 
   return (
-    <div className="flex-1 px-8 py-8">
+    <div className="flex-1 px-8 py-8 min-h-screen">
       <div className="max-w-4xl mx-auto">
         {renderContent()}
       </div>
