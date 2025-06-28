@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import setu from 'setu.js';
 
 export default function UserFetcher() {
