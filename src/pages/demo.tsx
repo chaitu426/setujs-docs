@@ -9,7 +9,6 @@ export default function UserFetcher() {
     const fetchUsers = async () => {
       try {
         const { data } = await setu.get('https://jsonplaceholder.typicode.com/users', {
-          retryDelay: 1000,
           timeout: 5000,
         });
         setUsers(data);
