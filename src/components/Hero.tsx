@@ -1,8 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   const containerVariants = {
@@ -23,7 +24,7 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: [0.42, 0, 0.58, 1]
       }
     }
   };
@@ -53,6 +54,24 @@ const Hero = () => {
     }
   };
 
+  const techs = [
+    "React",
+    "Next.js",
+    "Node.js",
+    "React Native",
+    "Svelte",
+    "Vue"
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % techs.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">
       {/* Subtle background elements */}
@@ -68,15 +87,34 @@ const Hero = () => {
           animate="visible"
           className="max-w-5xl mx-auto text-center"
         >
-          <motion.div variants={itemVariants} className="mb-8">
-            <motion.div 
-              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/80 backdrop-blur-sm px-4 py-2 text-sm font-medium mb-8 shadow-sm"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Sparkles className="h-4 w-4" />
-              Modern HTTP Client for JavaScript
-            </motion.div>
+          
+          <motion.div variants={itemVariants} className="mb-4">
+
+            
+          <motion.div
+      tabIndex={0}
+      whileHover={{ scale: 1.01 }}
+      whileFocus={{ scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 250, damping: 20 }}
+      className="inline-flex items-center gap-2 mb-8 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring transition-all"
+    >
+      <span className="text-foreground/70 font-medium">Works with</span>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={techs[index]}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.3 }}
+          className="text-foreground font-semibold min-w-[80px] text-sm"
+        >
+          {techs[index]}
+        </motion.span>
+      </AnimatePresence>
+    </motion.div>
+
+
+
             
             <h1 className="text-5xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[0.9] bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent">
               Bridge the gap between{" "}
@@ -127,7 +165,7 @@ const Hero = () => {
               transition={{ duration: 0.2 }}
             >
               <Button variant="ghost" size="lg" className="h-12 px-8 text-base font-medium" asChild>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/chaitu426/setu.js" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-5 w-5" />
                   GitHub
                 </a>
@@ -140,7 +178,7 @@ const Hero = () => {
             className="relative"
           >
             <motion.div
-              variants={floatingVariants}
+              
               animate="animate"
               className="relative max-w-4xl mx-auto"
             >
@@ -154,21 +192,21 @@ const Hero = () => {
                   </div>
                   <span className="ml-2 font-medium">setu-example.js</span>
                 </div>
-                <pre className="text-left text-sm lg:text-base leading-relaxed overflow-x-auto">
+                <pre className="text-left text-sm  lg:text-base leading-relaxed overflow-x-auto">
                   <code className="text-foreground/90 font-mono">
-{`import setu from 'setu.js';
+{`  import setu from 'setu.js';
 
-// Simple GET request
-const response = await setu.get('/api/users');
-console.log(response.data);
+    // Simple GET request
+      const response = await setu.get('/api/users');
+      console.log(response.data);
 
-// POST with progress tracking
-await setu.post('/api/upload', {
-  body: formData,
-  onUploadProgress: (progress) => {
-    console.log(\`\${progress.loaded}/\${progress.total}\`);
-  }
-});`}
+    // POST with progress tracking
+    await setu.post('/api/upload', {
+      body: formData,
+      onUploadProgress: (progress) => {
+         console.log(\`\${progress.loaded}/\${progress.total}\`);
+   }
+ });`}
                   </code>
                 </pre>
               </div>

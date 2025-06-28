@@ -1,10 +1,10 @@
 
-import { Github, Package, Heart } from "lucide-react";
+import { Github, Package, Heart, Linkedin, BringToFront } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -15,12 +15,12 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <div className="h-8 w-8 rounded-sm bg-foreground flex items-center justify-center">
-                <span className="text-background font-bold text-sm">S</span>
+              <BringToFront className="text-background font-bold text-sm"/>
               </div>
               <span className="text-xl font-medium tracking-tight">Setu.js</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
-              A modern, isomorphic HTTP client that bridges the gap between frontend 
+              A modern, isomorphic HTTP client that bridges the gap between frontend
               and backend JavaScript environments.
             </p>
             <div className="flex items-center gap-6">
@@ -36,7 +36,7 @@ const Footer = () => {
               </motion.a>
               <motion.a
                 whileHover={{ y: -1 }}
-                href="#"
+                href="https://github.com/chaitu426/setu.js"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -44,9 +44,19 @@ const Footer = () => {
                 <Github className="h-4 w-4" />
                 GitHub
               </motion.a>
+              <motion.a
+                whileHover={{ y: -1 }}
+                href="https://www.linkedin.com/in/chaitanya-abhade-b23080321/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </motion.a>
             </div>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-4">Documentation</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -56,7 +66,7 @@ const Footer = () => {
               <li><a href="/docs" className="hover:text-foreground transition-colors">TypeScript</a></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -67,14 +77,18 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             © 2024 Setu.js. All rights reserved.
           </p>
-          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            Built with <Heart className="h-4 w-4" /> for the JavaScript community
+          <div className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+            <span>Built with</span>
+            <Heart className="h-4 w-4 text-red-500" />
+            <span>for the JavaScript community by</span>
+            <span className="font-medium text-foreground">Chaitanya Abhade</span>
           </div>
+
         </div>
       </div>
     </motion.footer>

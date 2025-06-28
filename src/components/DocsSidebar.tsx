@@ -39,20 +39,20 @@ const DocsSidebar = ({ activeSection, onSectionChange }: DocsSidebarProps) => {
         { id: "file-operations", title: "File Operations", icon: Upload },
         { id: "progress-tracking", title: "Progress Tracking", icon: Download },
         { id: "streaming", title: "Streaming", icon: Zap },
-        { id: "error-handling", title: "Error Handling", icon: AlertCircle },
         { id: "retry-logic", title: "Retry Logic", icon: RotateCcw },
         { id: "timeouts", title: "Timeouts", icon: Clock },
       ]
     },
     {
-      title: "Advanced",
+      title: "Diff Technologies",
       items: [
-        { id: "interceptors", title: "Interceptors", icon: Filter },
-        { id: "typescript-support", title: "TypeScript", icon: Code },
-        { id: "browser-vs-nodejs", title: "Browser vs Node.js", icon: Globe },
-        { id: "advanced-usage", title: "Advanced Usage", icon: Wrench },
-        { id: "best-practices", title: "Best Practices", icon: Lightbulb },
-        { id: "troubleshooting", title: "Troubleshooting", icon: HelpCircle },
+        { id: "interceptors", title: "Next.js", icon: Filter },
+        { id: "typescript-support", title: "Node.js(Express)", icon: Code },
+        { id: "browser-vs-nodejs", title: "Vue 3 (with Vite)", icon: Globe },
+        { id: "advanced-usage", title: "React Native ", icon: Wrench },
+        { id: "best-practices", title: "SvelteKit", icon: Lightbulb },
+        // { id: "troubleshooting", title: "Troubleshooting", icon: HelpCircle },
+
       ]
     }
   ];

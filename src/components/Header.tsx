@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Github, BookOpen, Package, Sun, Moon } from "lucide-react";
+import { Github, BookOpen, Package, Sun, Moon, BringToFront } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ const Header = () => {
             transition={{ duration: 0.2 }}
             className="h-8 w-8 rounded-sm bg-foreground flex items-center justify-center"
           >
-            <span className="text-background font-bold text-sm">S</span>
+            <BringToFront className="text-background font-bold text-sm"/>
           </motion.div>
           <span className="text-xl font-medium tracking-tight">Setu.js</span>
         </Link>
@@ -58,7 +58,7 @@ const Header = () => {
             
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" size="sm" asChild>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/chaitu426/setu.js" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4" />
                 </a>
               </Button>
@@ -67,15 +67,6 @@ const Header = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" size="sm" onClick={toggleTheme}>
                 {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-              </Button>
-            </motion.div>
-            
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="sm" asChild>
-                <Link to="/docs">
-                  <BookOpen className="h-4 w-4 mr-2" />
-                  Get Started
-                </Link>
               </Button>
             </motion.div>
           </div>
