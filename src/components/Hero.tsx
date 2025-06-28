@@ -4,6 +4,7 @@ import { ArrowRight, Download, Github, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { easeInOut } from 'framer-motion';
 
 const Hero = () => {
   const containerVariants = {
@@ -24,7 +25,7 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.42, 0, 0.58, 1]
+        ease:easeInOut
       }
     }
   };
@@ -37,7 +38,7 @@ const Hero = () => {
       scale: 1,
       transition: {
         duration: 1.2,
-        ease: "easeOut",
+        ease: easeInOut,
         delay: 0.8
       }
     }
@@ -70,7 +71,7 @@ const Hero = () => {
       setIndex((i) => (i + 1) % techs.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [techs.length]);
 
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">

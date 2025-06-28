@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CheckCircle, Globe, Zap, Shield, Package, Copy, AlertTriangle, Info } from "lucide-react";
 import { motion } from "framer-motion";
+import { easeInOut } from 'framer-motion';
 
 interface DocsContentProps {
   activeSection: string;
@@ -15,7 +16,7 @@ const DocsContent = ({ activeSection }: DocsContentProps) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.42, 0, 0.58, 1] } // Cubic Bezier easing
+      transition: { duration: 0.6, ease: easeInOut } // Valid easing function
     }
   };
 
