@@ -59,7 +59,6 @@ const Hero = () => {
     "React",
     "Next.js",
     "Node.js",
-    "React Native",
     "Svelte",
     "Vue"
   ];

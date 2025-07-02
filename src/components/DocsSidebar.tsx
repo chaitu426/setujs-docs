@@ -51,7 +51,7 @@ const DocsSidebar = ({ activeSection, onSectionChange }: DocsSidebarProps) => {
         { id: "browser-vs-nodejs", title: "Vue 3 (with Vite)", icon: Globe },
         { id: "advanced-usage", title: "React Native ", icon: Wrench },
         { id: "best-practices", title: "SvelteKit", icon: Lightbulb },
-        // { id: "troubleshooting", title: "Troubleshooting", icon: HelpCircle },
+        //{ id: "troubleshooting", title: "Troubleshooting", icon: HelpCircle },
 
       ]
     }
